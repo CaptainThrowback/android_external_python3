@@ -40,4 +40,15 @@ ifneq ($(TW_EXCLUDE_PYTHON),true)
         mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python; \
         cp -rf $(LOCAL_PATH)/prebuilt/lib $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
     include $(BUILD_PHONY_PACKAGE)
+
+    include $(CLEAR_VARS)
+
+    LOCAL_MODULE := python3_scripts
+    LOCAL_MODULE_TAGS := optional
+    LOCAL_MODULE_CLASS := ETC
+    LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
+
+    LOCAL_POST_INSTALL_CMD += \
+        cp -rf $(LOCAL_PATH)/scripts $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
+    include $(BUILD_PHONY_PACKAGE)
 endif
