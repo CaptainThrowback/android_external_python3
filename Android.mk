@@ -22,10 +22,11 @@ ifneq ($(TW_EXCLUDE_PYTHON),true)
     LOCAL_MODULE := python3_bin
     LOCAL_MODULE_TAGS := optional
     LOCAL_MODULE_CLASS := EXECUTABLES
-    LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)/system/bin
+    LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 
     LOCAL_POST_INSTALL_CMD += \
-        cp -f $(LOCAL_PATH)/prebuilt/bin/* $(TARGET_COPY_OUT_RECOVERY)/root/system/bin/;
+        mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/system/bin; \
+        cp -f $(LOCAL_PATH)/prebuilt/bin/* $(TARGET_RECOVERY_ROOT_OUT)/system/bin/;
     include $(BUILD_PHONY_PACKAGE)
 
     include $(CLEAR_VARS)
@@ -33,10 +34,10 @@ ifneq ($(TW_EXCLUDE_PYTHON),true)
     LOCAL_MODULE := python3_lib
     LOCAL_MODULE_TAGS := optional
     LOCAL_MODULE_CLASS := ETC
-    LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)/system/etc
+    LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 
     LOCAL_POST_INSTALL_CMD += \
-        mkdir -p $(TARGET_COPY_OUT_RECOVERY)/root/system/etc/python; \
-        cp -f $(LOCAL_PATH)/prebuilt/lib $(TARGET_COPY_OUT_RECOVERY)/root/system/etc/python/;
+        mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python; \
+        cp -rf $(LOCAL_PATH)/prebuilt/lib $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
     include $(BUILD_PHONY_PACKAGE)
 endif
