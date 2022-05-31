@@ -24,19 +24,19 @@ ifneq ($(TW_EXCLUDE_PYTHON),true)
     LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)
 
     LOCAL_POST_INSTALL_CMD += \
-        mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python; \
-        cp -rf $(LOCAL_PATH)/prebuilt/common/bin $(TARGET_RECOVERY_ROOT_OUT)/system/; \
-        cp -rf $(LOCAL_PATH)/prebuilt/common/lib $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/; \
-        cp -rf $(LOCAL_PATH)/scripts $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
+        mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/etc/python; \
+        cp -rf $(LOCAL_PATH)/prebuilt/common/bin/* $(TARGET_RECOVERY_ROOT_OUT)/sbin/; \
+        cp -rf $(LOCAL_PATH)/prebuilt/common/lib $(TARGET_RECOVERY_ROOT_OUT)/etc/python/; \
+        cp -rf $(LOCAL_PATH)/scripts $(TARGET_RECOVERY_ROOT_OUT)/etc/python/;
 
     ifeq ($(TARGET_ARCH),arm64)
         LOCAL_POST_INSTALL_CMD += \
-            cp -rf $(LOCAL_PATH)/prebuilt/arm64/bin $(TARGET_RECOVERY_ROOT_OUT)/system/; \
-            cp -rf $(LOCAL_PATH)/prebuilt/arm64/lib $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
+            cp -rf $(LOCAL_PATH)/prebuilt/arm64/bin/* $(TARGET_RECOVERY_ROOT_OUT)/sbin/; \
+            cp -rf $(LOCAL_PATH)/prebuilt/arm64/lib $(TARGET_RECOVERY_ROOT_OUT)/etc/python/;
     else
         LOCAL_POST_INSTALL_CMD += \
-            cp -rf $(LOCAL_PATH)/prebuilt/arm/bin $(TARGET_RECOVERY_ROOT_OUT)/system/; \
-            cp -rf $(LOCAL_PATH)/prebuilt/arm/lib $(TARGET_RECOVERY_ROOT_OUT)/system/etc/python/;
+            cp -rf $(LOCAL_PATH)/prebuilt/arm/bin/* $(TARGET_RECOVERY_ROOT_OUT)/sbin/; \
+            cp -rf $(LOCAL_PATH)/prebuilt/arm/lib $(TARGET_RECOVERY_ROOT_OUT)/etc/python/;
     endif
     include $(BUILD_PHONY_PACKAGE)
 endif
